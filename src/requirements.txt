@@ -1,4 +1,5 @@
-scikit-learn
 fastapi[all]
-pytest
 uvicorn
+joblib==1.3.2
+pytest==7.4.0
+scipy==1.10.1
