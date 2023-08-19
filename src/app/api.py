@@ -14,7 +14,7 @@ description = "This App allows users to predict whether a patient would be diagn
 
 )
 
-#API INPUT
+# #API INPUT
 class Input(BaseModel):
     Plasma_Glucose: int
     Blood_Work_Result1: int
@@ -29,11 +29,11 @@ class Input(BaseModel):
 
 
 #ENDPOINT
-@app.get("/Status")
+@app.get("/")
 async def root():
-    return {"message": "Online"}
+    return{"message": "Online"}
 
-@app.post("/predict/")
+@app.post("/predict")
 def predict(input: Input):
     scaler = joblib.load("Assets/scaler.joblib")
     model = joblib.load("Assets/model.joblib")
@@ -53,7 +53,11 @@ input.Age,input.Insurance]
     
     # Serialize the prediction result using jsonable_encoder
     serialized_prediction = jsonable_encoder({"prediction": int(prediction)})
-    return serialized_prediction
+    if serialized_prediction["prediction"] == 1:
+        Diagnosis = {"Results" : "Positive"}
+    else:
+        Diagnosis = {"Results" : "Negative"}
+    return Diagnosis
 
 
 if __name__ == '__main__':
