@@ -29,4 +29,4 @@ I made my own API, this allowing me to interact with a Machine Learning model, t
 
 
 ## Author
-MrDadzie
+EFOBI GODWIN
